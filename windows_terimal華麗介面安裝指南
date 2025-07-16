@@ -1,0 +1,21 @@
+# 1.安裝Windows Terminal 
+#  https://apps.microsoft.com/detail/9n0dx20hk701?hl=zh-TW&gl=TW
+
+
+# 2.PowerShell  安裝 Oh My Posh
+winget install JanDeDobbeleer.OhMyPosh -s winget
+
+
+#3.讓 PowerShell 自動幫你建立正確目錄與檔案
+# 3.1 確保 PowerShell 啟動檔資料夾存在
+New-Item -ItemType Directory -Path (Split-Path -Parent $PROFILE) -Force
+
+# 3.2 建立啟動檔（如果尚未存在）
+New-Item -ItemType File -Path $PROFILE -Force
+
+# 3.3 打開來編輯
+notepad $PROFILE
+
+# 3.4 只要在記事本裡貼入這一行，後儲存
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" | Invoke-Expression
+
